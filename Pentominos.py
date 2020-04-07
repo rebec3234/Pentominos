@@ -68,7 +68,7 @@ def place_f(board, starting_index):
         b_copy[row][column] = 'F'
     else:
         return False
-    
+
     # If there are no piece conflicts, replace original board with updated board
     board = board_copy(board, b_copy)
     return True
@@ -112,7 +112,7 @@ def place_l(board, starting_index):
         b_copy[row][column] = 'L'
     else:
         return False
-    
+
     # If there are no piece conflicts, replace original board with updated board
     board = board_copy(board, b_copy)
     return True
@@ -154,7 +154,7 @@ def place_i(board, starting_index):
         b_copy[row][column] = 'I'
     else:
         return False
-    
+
     # If there are no piece conflicts, replace original board with updated board
     board = board_copy(board, b_copy)
     return True
@@ -198,7 +198,7 @@ def place_t(board, starting_index):
         b_copy[row][column] = 'T'
     else:
         return False
-    
+
     # If there are no piece conflicts, replace original board with updated board
     board = board_copy(board, b_copy)
     return True
@@ -243,10 +243,19 @@ def place_y(board, starting_index):
         b_copy[row][column] = 'Y'
     else:
         return False
-    
+
     # If there are no piece conflicts, replace original board with updated board
     board = board_copy(board, b_copy)
     return True
+
+def increment_index(starting_index):
+    if starting_index[1] + 1 < 5:
+        starting_index[1] = starting_index[1] + 1
+        return True
+    elif starting_index[0] + 1 < 5:
+        starting_index[0] = starting_index[0] + 1
+        return True
+    return False
 
 def board_copy(original, new):
     for i in range(len(original)):
