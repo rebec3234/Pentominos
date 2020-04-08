@@ -263,11 +263,44 @@ def board_copy(original, new):
             original[i][j] = new[i][j]
     return original
 
+def place_piece(board,row,column):
+     #Attempts to place pieces at a starting index until successful
+     #NOT TESTED
+     if (place_f(board, [row, column])):
+          place_f(board, [row, column])
+          return True
+     elif (place_l(board, [row, column])):
+          place_l(board, [row, column])
+          return True
+     elif (place_i(board, [row, column])):
+          place_i(board, [row, column])
+          return True
+     elif (place_t(board, [row, column])):
+          place_t(board, [row, column])
+          return True
+     elif (place_y(board, [row, column])):
+          place_y(board, [row, column])
+          return True
+     return False
+
+def is_empty(board, index):
+     # Checks is a spot on the board is empty.
+     # NOT TESTED
+     if (board[index[0]][index[1]] == 0):
+          return True
+     return False
+
+## A main program that places pieces on the board until it runs out of starting spots.
+## Things that need to be added: 
+## -A function to test if the board is full
+## -A function to backtrack if no piece can be placed and the board is not full
+# NOT TESTED
 board = initial_board()
+starting_index = [0,0]
+while (starting_index[0] <= len(board)):
+     while (starting_index[1] <= len(board[0])):
+          if(is_empty(board, starting_index) and place_piece(board,starting_index[0],starting_index[1])):
+             place_piece(board,starting_index[0],starting_index[1])
+          increment_index(starting_index[1])    
 print_board(board)
-place_f(board, [0,0])
-place_y(board, [1,0])
-place_i(board, [0,4])
-place_l(board, [0,2])
-place_t(board, [2,2])
-print_board(board)
+
