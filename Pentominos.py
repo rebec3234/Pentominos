@@ -255,6 +255,9 @@ def increment_index(starting_index):
     elif starting_index[0] + 1 < 5:
         starting_index[0] = starting_index[0] + 1
         return True
+    elif starting_index[0] == 4 and starting_index[1] ==4:
+        starting_index[1] = 0
+        starting_index[0] = 0
     return False
 
 def board_copy(original, new):
@@ -271,3 +274,6 @@ place_i(board, [0,4])
 place_l(board, [0,2])
 place_t(board, [2,2])
 print_board(board)
+
+board = initial_board()
+place_pieces(board, [0,0])
