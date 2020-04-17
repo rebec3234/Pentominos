@@ -13,6 +13,11 @@ F: X X    L: X X  I: X  T:   X    Y: X    U: X X  P:   X X
      X         X     X     X X X     X X     X X
                X     X               X
                      X
+
+W: X X      X:   X   Z: X X   V: X       N: X
+     X X       X X X      X      X          X
+       X X       X        X X    X X X      X X
+                                              X
 '''
 
 ''' F U N C T I O N S '''
@@ -336,6 +341,228 @@ def place_p(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+def place_w(board, starting_index):
+    # Starting position of piece
+    row = starting_index[0]
+    column = starting_index[1]
+
+    # Check that piece doesn't extend past boundaries of 5 x 5 board
+    if(row > 2):
+        return False
+    if(column > 2):
+        return False
+
+    # Copy board to prevent accidental overwriting
+    b_copy = [ele[:] for ele in board]
+
+    # Place piece, checking to make sure another piece isn't in the way
+    if(b_copy[row][column] == 0):
+        b_copy[row][column] = 'W'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'W'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'W'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'W'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'W'
+    else:
+        return False
+
+    # If there are no piece conflicts, replace original board with updated board
+    board = board_copy(board, b_copy)
+    return True
+
+def place_x(board, starting_index):
+    # Starting position of piece
+    row = starting_index[0]
+    column = starting_index[1]
+
+    # Check that piece doesn't extend past boundaries of 5 x 5 board
+    if(row < 1 or row > 3):
+        return False
+    if(column > 2):
+        return False
+
+    # Copy board to prevent accidental overwriting
+    b_copy = [ele[:] for ele in board]
+
+    # Place piece, checking to make sure another piece isn't in the way
+    if(b_copy[row][column] == 0):
+        b_copy[row][column] = 'X'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'X'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'X'
+    else:
+        return False
+    if(b_copy[row - 1][column - 1] == 0):
+        row -= 1
+        column -= 1
+        b_copy[row][column] = 'X'
+    else:
+        return False
+    if(b_copy[row + 2][column] == 0):
+        row += 2
+        b_copy[row][column] = 'X'
+    else:
+        return False
+
+    # If there are no piece conflicts, replace original board with updated board
+    board = board_copy(board, b_copy)
+    return True
+
+def place_z(board, starting_index):
+    # Starting position of piece
+    row = starting_index[0]
+    column = starting_index[1]
+
+    # Check that piece doesn't extend past boundaries of 5 x 5 board
+    if(row > 2):
+        return False
+    if(column > 2):
+        return False
+
+    # Copy board to prevent accidental overwriting
+    b_copy = [ele[:] for ele in board]
+
+    # Place piece, checking to make sure another piece isn't in the way
+    if(b_copy[row][column] == 0):
+        b_copy[row][column] = 'Z'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'Z'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'Z'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'Z'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'Z'
+    else:
+        return False
+
+    # If there are no piece conflicts, replace original board with updated board
+    board = board_copy(board, b_copy)
+    return True
+
+def place_v(board, starting_index):
+    # Starting position of piece
+    row = starting_index[0]
+    column = starting_index[1]
+
+    # Check that piece doesn't extend past boundaries of 5 x 5 board
+    if(row > 2):
+        return False
+    if(column > 2):
+        return False
+
+    # Copy board to prevent accidental overwriting
+    b_copy = [ele[:] for ele in board]
+
+    # Place piece, checking to make sure another piece isn't in the way
+    if(b_copy[row][column] == 0):
+        b_copy[row][column] = 'V'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'V'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'V'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'V'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'V'
+    else:
+        return False
+
+    # If there are no piece conflicts, replace original board with updated board
+    board = board_copy(board, b_copy)
+    return True
+
+def place_n(board, starting_index):
+    # Starting position of piece
+    row = starting_index[0]
+    column = starting_index[1]
+
+    # Check that piece doesn't extend past boundaries of 5 x 5 board
+    if(row > 1):
+        return False
+    if(column > 3):
+        return False
+
+    # Copy board to prevent accidental overwriting
+    b_copy = [ele[:] for ele in board]
+
+    # Place piece, checking to make sure another piece isn't in the way
+    if(b_copy[row][column] == 0):
+        b_copy[row][column] = 'N'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'N'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'N'
+    else:
+        return False
+    if(b_copy[row][column + 1] == 0):
+        column += 1
+        b_copy[row][column] = 'N'
+    else:
+        return False
+    if(b_copy[row + 1][column] == 0):
+        row += 1
+        b_copy[row][column] = 'N'
+    else:
+        return False
+
+    # If there are no piece conflicts, replace original board with updated board
+    board = board_copy(board, b_copy)
+    return True
+
+
 def increment_index(starting_index):
     if starting_index[1] + 1 < 5:
         starting_index[1] = starting_index[1] + 1
@@ -404,7 +631,7 @@ def which_piece(board):
         if(pieces[count] != 0):
             flag = count
         count += 1
-    
+
     return flag     # if it ends up returning -1 there will be a problem
 
 
@@ -445,7 +672,7 @@ def backtrace(original_board):
 
         # for each subproblem
         for i in range(len(subproblems)):
-            
+
             if(board_full(subproblems[i])):
                 # if this is a success, halt
                 return subproblems[i]
@@ -465,7 +692,7 @@ def backtrace(original_board):
         #     print_board(stack[i])
 
     return False
-        
+
 
 
 board = initial_board()
@@ -489,4 +716,3 @@ print_board(result)
 
 # if(board_full(board)):
 #     print("DONE")
-
