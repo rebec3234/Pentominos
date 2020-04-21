@@ -667,7 +667,7 @@ def which_piece(board):
                 pieces[11] = 0
     flag = -1
     count = 0
-    while(flag == -1 and count < 5):
+    while(flag == -1 and count < len(pieces)):
         if(pieces[count] != 0):
             flag = count
         count += 1
