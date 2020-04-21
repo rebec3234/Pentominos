@@ -606,12 +606,12 @@ def test_failure(board):
         for j in range(len(test_board)):
             board = board_copy(test_board, board)
             if(test_board[i][j] == 0):
-                if(place_f(test_board, [i,j]) or place_u(test_board, [i,j]) or place_i(test_board, [i,j]) or place_p(test_board, [i,j]) or place_y(test_board, [i,j])):
+                if(place_f(test_board, [i,j]) or place_u(test_board, [i,j]) or place_i(test_board, [i,j]) or place_p(test_board, [i,j]) or place_y(test_board, [i,j]) or place_t(test_board, [i,j]) or place_z(test_board, [i,j]) or place_x(test_board, [i,j]) or place_w(test_board, [i,j]) or place_v(test_board, [i,j]) or place_l(test_board, [i,j]), place_n(test_board, [i,j])):
                     return False
     return True
 
 def which_piece(board):
-    pieces = ['I', 'F', 'U', 'Y', 'P']
+    pieces = ['I', 'F', 'U', 'Y', 'P', 'T', 'Z', 'X', 'W', 'V', 'L', 'N']
 
     for i in range(len(board)):
         for j in range(len(board[0])):
@@ -625,6 +625,20 @@ def which_piece(board):
                 pieces[3] = 0
             elif(board[i][j] == 'P'):
                 pieces[4] = 0
+            elif(board[i][j] == 'T'):
+                pieces[5] = 0
+            elif(board[i][j] == 'Z'):
+                pieces[6] = 0
+            elif(board[i][j] == 'X'):
+                pieces[7] = 0
+            elif(board[i][j] == 'W'):
+                pieces[8] = 0
+            elif(board[i][j] == 'V'):
+                pieces[9] = 0
+            elif(board[i][j] == 'L'):
+                pieces[10] = 0
+            elif(board[i][j] == 'N'):
+                pieces[11] = 0
     flag = -1
     count = 0
     while(flag == -1 and count < 5):
@@ -668,6 +682,27 @@ def backtrace(original_board):
                         append_board(subproblems, board)
                 if(count == 4):
                     if(place_p(board, [i,j])):
+                        append_board(subproblems, board)
+                if(count == 5):
+                    if(place_t(board, [i,j])):
+                        append_board(subproblems, board)
+                if(count == 6):
+                    if(place_z(board, [i,j])):
+                        append_board(subproblems, board)
+                if(count == 7):
+                    if(place_x(board, [i,j])):
+                        append_board(subproblems, board)
+                if(count == 8):
+                    if(place_w(board, [i,j])):
+                        append_board(subproblems, board)
+                if(count == 9):
+                    if(place_v(board, [i,j])):
+                        append_board(subproblems, board)
+                if(count == 10):
+                    if(place_l(board, [i,j])):
+                        append_board(subproblems, board)
+                if(count == 11):
+                    if(place_n(board, [i,j])):
                         append_board(subproblems, board)
 
         # for each subproblem
