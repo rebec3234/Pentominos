@@ -1,4 +1,3 @@
-import copy
 '''
 This program addresses the game Pentominos
 by solving it as a constraint satisfaction problem
@@ -22,7 +21,14 @@ W: X         X:   X   Z: X X   V: X       N: X
 
 ''' F U N C T I O N S '''
 
-def initial_board(row = 5, column = 7):
+'''
+This function generates an empty pentominos board of size
+5 x 5 or of size 5 x 7
+row: the number of rows in the board
+column: the number of columns in the board
+return: the list representing the empty board
+'''
+def initial_board(row = 5, column = 5):
     if(row == 5 and column == 5):
         board = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
         '''
@@ -43,6 +49,10 @@ def initial_board(row = 5, column = 7):
         board = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
     return board
 
+'''
+This function prints the given board in a readable output format
+board: the input board to be printed
+'''
 def print_board(board):
     for i in range(len(board)):
         for j in range(len(board[0])):
@@ -50,7 +60,19 @@ def print_board(board):
         print('\n')
     print('\n')
 
+'''
+This function places the piece F in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_f(board, starting_index):
+    '''
+    X X
+      X X
+      X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -95,7 +117,20 @@ def place_f(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece L in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_l(board, starting_index):
+    '''
+    X X
+      X
+      X
+      X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -139,7 +174,21 @@ def place_l(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece I in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_i(board, starting_index):
+    '''
+    X
+    X
+    X
+    X
+    X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -181,9 +230,15 @@ def place_i(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece T in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_t(board, starting_index):
     '''
-    CHANGED:
     T T T
       T
       T
@@ -232,7 +287,20 @@ def place_t(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece Y in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_y(board, starting_index):
+    '''
+    X
+    X
+    X X
+    X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -277,7 +345,19 @@ def place_y(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece U in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_u(board, starting_index):
+    '''
+    X X
+      X
+    X X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -321,7 +401,18 @@ def place_u(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece P in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_p(board, starting_index):
+    '''
+      X X
+    X X X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -365,7 +456,19 @@ def place_p(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece W in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_w(board, starting_index):
+    '''
+    X
+    X X
+      X X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -409,7 +512,19 @@ def place_w(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece X in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_x(board, starting_index):
+    '''
+      X
+    X X X
+      X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -454,7 +569,19 @@ def place_x(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece Z in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_z(board, starting_index):
+    '''
+    X X
+      X
+      X X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -498,7 +625,19 @@ def place_z(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece V in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_v(board, starting_index):
+    '''
+    X
+    X
+    X X X
+    '''
     # Starting position of piece
     row = starting_index[0]
     column = starting_index[1]
@@ -542,9 +681,15 @@ def place_v(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
+'''
+This function places the piece N in the specified position on the board,
+checking to make sure the piece is only placed if it can properly fit on the board
+board: the board to place the piece on
+starting_index: the starting location on the board for placing the piece
+return: True if the piece was successfully placed on the board, False otherwise
+'''
 def place_n(board, starting_index):
     '''
-    CHANGED:
     X
     X X
       X
@@ -593,25 +738,26 @@ def place_n(board, starting_index):
     board = board_copy(board, b_copy)
     return True
 
-
-def increment_index(starting_index):
-    if starting_index[1] + 1 < 5:
-        starting_index[1] = starting_index[1] + 1
-        return True
-    elif starting_index[0] + 1 < 5:
-        starting_index[0] = starting_index[0] + 1
-        return True
-    elif starting_index[0] == 4 and starting_index[1] ==4:
-        starting_index[1] = 0
-        starting_index[0] = 0
-    return False
-
+'''
+This function makes a deep copy of the Pentominos board to prevent
+overwriting any spaces
+original: the board that is receiving the copy
+new: the new board that needs to be copy into the old board
+returns: the board copy
+'''
 def board_copy(original, new):
     for i in range(len(original)):
         for j in range(len(original[0])):
             original[i][j] = new[i][j]
     return original
 
+'''
+This function creates a deep copy of a given Pentominos board and
+appends it to a list of subproblems in the backtrace function to
+prevent any accidental overwriting of boards
+subproblems: the list of subproblems to be expanded in backtrace
+board: the Pentominos board that needs to be added
+'''
 def append_board(subproblems, board):
     new_board = initial_board()
 
@@ -621,6 +767,12 @@ def append_board(subproblems, board):
 
     subproblems.append(new_board)
 
+'''
+This function tests a given board to see if every space has a piece; this
+is used as the test condition to see if a solution is found
+board: the board that is being checked
+returns: True if the board is full, False otherwise
+'''
 def board_full(board):
     for i in range(len(board)):
         for j in range(len(board[0])):
@@ -628,6 +780,13 @@ def board_full(board):
                 return False
     return True
 
+'''
+This function tests a given board to see if it can be considered a failed board
+by the backtrace function and thus discarded; checks to see if any more pieces can fit
+on the board
+board: the board that is being tested
+returns: True if the board cannot fit any more pieces, False if the board can fit more pieces
+'''
 def test_failure(board):
 
     test_board = initial_board()
@@ -641,6 +800,12 @@ def test_failure(board):
                     return False
     return True
 
+'''
+This function determines which pieces have not yet been placed on the given
+board to expand the board into subproblems in the backtrace function
+board: the board to be analyzed
+returns: a list of the pieces that have not yet been placed on the given board
+'''
 def which_piece(board):
     pieces = ['I', 'F', 'U', 'Y', 'P', 'T', 'Z', 'X', 'W', 'V', 'L', 'N']
 
@@ -670,17 +835,20 @@ def which_piece(board):
                 pieces[10] = 0
             elif(board[i][j] == 'N'):
                 pieces[11] = 0
-    flag = -1
+    options = []
     count = 0
-    while(flag == -1 and count < 5):
-        if(pieces[count] != 0):
-            flag = count
-        count += 1
+    for i in range(len(pieces)):
+        if(pieces[i] != 0):
+            options.append(pieces[i])
 
-    return flag     # if it ends up returning -1 there will be a problem
+    return options     # if it ends up returning an empty list there will be a problem
 
-
-
+'''
+This function performs a backtrace on an input Pentominos board to find a solution
+in which every space on the board is filled by a piece
+original_board: the empty Pentominos board that needs to be filled
+returns: the solution board if it exists, False otherwise
+'''
 def backtrace(original_board):
     stack = []
     stack.append(original_board)
@@ -695,50 +863,51 @@ def backtrace(original_board):
 
         # expand the problem into subproblems
         subproblems = []
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                board = board_copy(board, current_board)
-                count = which_piece(board)
-                if(count == 0):
-                    if(place_i(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 1):
-                    if(place_f(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 2):
-                    if(place_u(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 3):
-                    if(place_y(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 4):
-                    if(place_p(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 5):
-                    if(place_t(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 6):
-                    if(place_z(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 7):
-                    if(place_x(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 8):
-                    if(place_w(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 9):
-                    if(place_v(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 10):
-                    if(place_l(board, [i,j])):
-                        append_board(subproblems, board)
-                if(count == 11):
-                    if(place_n(board, [i,j])):
-                        append_board(subproblems, board)
+
+        pieces = which_piece(board)
+        for k in range(len(pieces)):
+            for i in range(len(board)):
+                for j in range(len(board[0])):
+                    board = board_copy(board, current_board)
+                    if(pieces[k] == 'I'):
+                        if(place_i(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'F'):
+                        if(place_f(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'U'):
+                        if(place_u(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'Y'):
+                        if(place_y(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'P'):
+                        if(place_p(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'T'):
+                        if(place_t(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'Z'):
+                        if(place_z(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'X'):
+                        if(place_x(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'W'):
+                        if(place_w(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'V'):
+                        if(place_v(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'L'):
+                        if(place_l(board, [i,j])):
+                            append_board(subproblems, board)
+                    if(pieces[k] == 'N'):
+                        if(place_n(board, [i,j])):
+                            append_board(subproblems, board)
 
         # for each subproblem
         for i in range(len(subproblems)):
-
             if(board_full(subproblems[i])):
                 # if this is a success, halt
                 return subproblems[i]
@@ -749,39 +918,23 @@ def backtrace(original_board):
                 stack.append(subproblems[i])
                 # otherwise, add it onto the stack
 
-        # print("Iteration" + str(count))
-        # for i in range(len(subproblems)):
-        #     print_board(subproblems[i])
-
-        # print("Stack" + str(count))
-        # for i in range(len(stack)):
-        #     print_board(stack[i])
-
     return False
 
+'''
+This is the main code that runs the Pentominos solver:
+1 - Create an initial board by calling initial_board()
+    No parameters are needed since they unfortunately need to be hard-coded in the function
+2 - Call the function backtrace() on the initial board to find a solution
+3 - If a solution is found (with the current configuration, it should be), it will be printed
 
+NOTE: finding a solution to a 5 x 7 board takes ~15-20 minutes
+'''
 
-board = initial_board(5, 7)
+board = initial_board()
 result = backtrace(board)
 
 if(result):
+    print("Solution Board:")
     print_board(result)
 else:
     print("No Solution")
-
-# place_f(board, [0,0])
-# place_y(board, [1,0])
-# place_i(board, [0,4])
-# place_l(board, [0,2])
-# print_board(board)
-
-# place_f(board, [1,0])
-# place_i(board, [0,4])
-# place_l(board, [0,2])
-# print_board(board)
-
-# if(test_failure(board)):
-#     print("WORKS")
-
-# if(board_full(board)):
-#     print("DONE")
